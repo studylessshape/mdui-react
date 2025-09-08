@@ -1,4 +1,4 @@
-# @less/mdui-react
+# @studylessshape/mdui-react
 
 English | [中文](./README_zh.md)
 
@@ -11,7 +11,7 @@ This package use [@lit/react](https://lit.dev/docs/frameworks/react/)([npm](http
 First is to import css styles after install.
 
 ```css
-@import "@less/mdui-react/mdui.css";
+@import "@studylessshape/mdui-react/mdui.css";
 ```
 
 If the [mdui](https://github.com/zdhxiong/mdui) had been installed, can also import by:
@@ -31,7 +31,7 @@ import {
   TopAppBar,
   TopAppBarTitle,
   Slot,
-} from "@less/mdui-react";
+} from "@studylessshape/mdui-react";
 
 export function App() {
   return (
@@ -85,6 +85,11 @@ If use [material-icons](https://github.com/marella/material-icons), need import 
 @import "material-icons/iconfont/material-icons.css";
 ```
 
+## Todo
+
+- [ ] locales
+- [ ] functions
+
 ## Contributing
 
 ### Environment
@@ -114,7 +119,7 @@ export const Layout = createComponent({
 I offen export the raw type because I thought it can help to ref.
 
 ```tsx
-import { LayoutType, Layout } from "@less/mdui-ract";
+import { LayoutType, Layout } from "@studylessshape/mdui-ract";
 
 export function App() {
   const layoutRef = useRef<LayoutType>(null);
