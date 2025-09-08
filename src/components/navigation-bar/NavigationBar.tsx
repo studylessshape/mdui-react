@@ -4,7 +4,7 @@ import React from "react";
 
 export { NavigationBar as NavigationBarType } from "mdui/components/navigation-bar.js";
 
-export interface NavigationBarEvent extends Event {
+export interface NavigationBarCustomEvent extends CustomEvent<void> {
   target: _MduiNavigationBar & EventTarget;
 }
 
@@ -13,10 +13,10 @@ export const NavigationBar = createComponent({
   tagName: "mdui-navigation-bar",
   elementClass: _MduiNavigationBar,
   events: {
-    onChange: "change" as EventName<NavigationBarEvent>,
-    onShow: "show" as EventName<NavigationBarEvent>,
-    onShown: "shown" as EventName<NavigationBarEvent>,
-    onHide: "hide" as EventName<NavigationBarEvent>,
-    onHidden: "hidden" as EventName<NavigationBarEvent>,
+    onChange: "change" as EventName<NavigationBarCustomEvent>,
+    onShow: "show" as EventName<NavigationBarCustomEvent>,
+    onShown: "shown" as EventName<NavigationBarCustomEvent>,
+    onHide: "hide" as EventName<NavigationBarCustomEvent>,
+    onHidden: "hidden" as EventName<NavigationBarCustomEvent>,
   },
 });

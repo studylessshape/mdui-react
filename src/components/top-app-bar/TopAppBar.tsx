@@ -4,7 +4,7 @@ import React from "react";
 
 export { TopAppBar as TopAppBarType } from "mdui/components/top-app-bar.js";
 
-export interface TopAppBarEvent extends Event {
+export interface TopAppBarCustomEvent extends CustomEvent<void> {
   target: _MduiTopAppBar & EventTarget;
 }
 
@@ -13,9 +13,9 @@ export const TopAppBar = createComponent({
   tagName: "mdui-top-app-bar",
   elementClass: _MduiTopAppBar,
   events: {
-    onShow: "show" as EventName<TopAppBarEvent>,
-    onShown: "shown" as EventName<TopAppBarEvent>,
-    onHide: "hide" as EventName<TopAppBarEvent>,
-    onHiden: "hiden" as EventName<TopAppBarEvent>,
+    onShow: "show" as EventName<TopAppBarCustomEvent>,
+    onShown: "shown" as EventName<TopAppBarCustomEvent>,
+    onHide: "hide" as EventName<TopAppBarCustomEvent>,
+    onHiden: "hiden" as EventName<TopAppBarCustomEvent>,
   },
 });
