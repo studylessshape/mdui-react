@@ -6,6 +6,20 @@ This package use [@lit/react](https://lit.dev/docs/frameworks/react/)([npm](http
 
 ## Basic Usage
 
+First is to import css styles after install.
+
+```css
+@import "@less/mdui-react/mdui.css";
+```
+
+If the [mdui](https://github.com/zdhxiong/mdui) had been installed, can also import by:
+
+```css
+@import "mdui/mdui.css";
+```
+
+Then use components:
+
 ```tsx
 import {
   Layout,
@@ -43,7 +57,7 @@ export function App() {
 
 ## Event Target
 
-Some event wrap like below:
+Some events are encapsulated in the following form:
 
 ```ts
 import { NavigationBar as _MduiNavigationBar } from "mdui/components/navigation-bar.js";
@@ -55,7 +69,7 @@ export interface NavigationBarEvent extends Event {
 
 Then you can access the value by `event.target.value` in event handler;
 
-Other components' event also like that.
+The events of other components are also consistent.
 
 ## Icons
 
