@@ -150,3 +150,7 @@ export const NavigationBar = createComponent({
 ```
 
 指定事件的类型可以帮助用户进行事件处理。
+
+## 许可
+
+[MIT](./LICENSE)

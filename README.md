@@ -150,3 +150,7 @@ export const NavigationBar = createComponent({
 ```
 
 Specified the target type can help users to handle the event.
+
+## License
+
+[MIT](./LICENSE)
