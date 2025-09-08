@@ -1,26 +1,26 @@
 # @less/mdui-react
 
-English | [中文](./README_zh.md)
+[English](./README.md) | 中文
 
-[mdui](https://github.com/zdhxiong/mdui) for react.
+[mdui](https://github.com/zdhxiong/mdui) 的 react 组件。
 
-This package use [@lit/react](https://lit.dev/docs/frameworks/react/)([npm](https://www.npmjs.com/package/@lit/react)) to convert the web components of [mdui](https://github.com/zdhxiong/mdui) to react component.
+这个包使用 [@lit/react](https://lit.dev/docs/frameworks/react/)([npm](https://www.npmjs.com/package/@lit/react)) 把 [mdui](https://github.com/zdhxiong/mdui) 转为 react 的组件。
 
-## Basic Usage
+## 基础使用
 
-First is to import css styles after install.
+安装后，首先要导入 css 样式：
 
 ```css
 @import "@less/mdui-react/mdui.css";
 ```
 
-If the [mdui](https://github.com/zdhxiong/mdui) had been installed, can also import by:
+如果按照了 [mdui](https://github.com/zdhxiong/mdui)，也可以直接导入 [mdui](https://github.com/zdhxiong/mdui) 的样式：
 
 ```css
 @import "mdui/mdui.css";
 ```
 
-Then use components:
+然后就可以使用组件了：
 
 ```tsx
 import {
@@ -37,19 +37,19 @@ export function App() {
   return (
     <Layout>
       <TopAppBar variant="center-aligned">
-        <TopAppBarTitle>App Title</TopAppBarTitle>
+        <TopAppBarTitle>应用标题</TopAppBarTitle>
       </TopAppBar>
-      <LayoutMain>App Content</LayoutMain>
+      <LayoutMain>页面内容</LayoutMain>
       <NavigationBar
         onChange={(event) => {
           console.log(event.target.value);
         }}
       >
         <NavigationBarItem value="/" icon="home">
-          Home
+          主页
         </NavigationBarItem>
         <NavigationBarItem value="/about" icon="info">
-          About
+          关于
         </NavigationBarItem>
       </NavigationBar>
     </Layout>
@@ -59,7 +59,7 @@ export function App() {
 
 ## Event Target
 
-Some events are encapsulated in the following form:
+一些特殊的事件按照下面的方式进行封装：
 
 ```ts
 import { NavigationBar as _MduiNavigationBar } from "mdui/components/navigation-bar.js";
@@ -69,32 +69,32 @@ export interface NavigationBarEvent extends Event {
 }
 ```
 
-Then you can access the value by `event.target.value` in event handler;
+然后就可以通过 `event.target` 来获取到组件的值并访问组件的属性了;
 
-The events of other components are also consistent.
+其他的组件的事件基本都是按这种形式进行的封装。
 
-## Icons
+## 图标
 
-Import icons can read the doc [Icon#usage-material-icons](https://www.mdui.org/docs/2/components/icon#usage-material-icons)
+导入图标可以看 mdui 的文档：[Icon#usage-material-icons](https://www.mdui.org/docs/2/components/icon#usage-material-icons)
 
-Also can use the [material-icons](https://github.com/marella/material-icons)([npm](https://www.npmjs.com/package/material-icons)).
+也可以使用 [material-icons](https://github.com/marella/material-icons)([npm](https://www.npmjs.com/package/material-icons))。
 
-If use [material-icons](https://github.com/marella/material-icons), need import css after install:
+如果使用 [material-icons](https://github.com/marella/material-icons)，需要在安装后，导入图标的 css。
 
 ```css
 @import "material-icons/iconfont/material-icons.css";
 ```
 
-## Contributing
+## 贡献代码
 
-### Environment
+### 要求环境
 
 - Node (>=16)
-- Package manager: `pnpm`
+- 包管理器: `pnpm`
 
-### Component Create
+### 组件转换
 
-Create a react component from web component is simple used [@lit/react](https://lit.dev/docs/frameworks/react/)
+转换组件使用 [@lit/react](https://lit.dev/docs/frameworks/react/) 的 `craeteComponent` 是很简单的：
 
 ````tsx
 import { createComponent } from "@lit/react";
@@ -111,7 +111,7 @@ export const Layout = createComponent({
 });
 ````
 
-I offen export the raw type because I thought it can help to ref.
+不过我通常会将原本的类型也进行导出，这样方便下面这种 ref：
 
 ```tsx
 import { LayoutType, Layout } from "@less/mdui-ract";
@@ -122,9 +122,9 @@ export function App() {
 }
 ```
 
-### Event
+### 事件
 
-If there are some special events in the component, can deil with this way:
+如果组件有一些特殊的事件，需要按照下面的方式进行处理：
 
 ```tsx
 import { createComponent, type EventName } from "@lit/react";
@@ -149,4 +149,4 @@ export const NavigationBar = createComponent({
 });
 ```
 
-Specified the target type can help users to handle the event.
+指定事件的类型可以帮助用户进行事件处理。
