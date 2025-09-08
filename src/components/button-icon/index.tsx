@@ -4,7 +4,7 @@ import { createComponent, type EventName } from "@lit/react";
 
 export { ButtonIcon as ButtonIconType } from "mdui/components/button-icon.js";
 
-export interface ButtonIconEvent extends Event {
+export interface ButtonIconCustomEvent extends CustomEvent<void> {
   target: _MduiButtonIcon & EventTarget;
 }
 
@@ -19,7 +19,7 @@ export const ButtonIcon = createComponent({
   events: {
     onFocus: "focus" as EventName<ButtonIconFocusEvent>,
     onBlur: "blur" as EventName<ButtonIconFocusEvent>,
-    onChange: "change" as EventName<ButtonIconEvent>,
-    onInvalid: "invalid" as EventName<ButtonIconEvent>,
+    onChange: "change" as EventName<ButtonIconCustomEvent>,
+    onInvalid: "invalid" as EventName<ButtonIconCustomEvent>,
   },
 });

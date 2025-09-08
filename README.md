@@ -1,4 +1,4 @@
-# mdui-react
+# @less/mdui-react
 
 [mdui](https://github.com/zdhxiong/mdui) for react.
 
