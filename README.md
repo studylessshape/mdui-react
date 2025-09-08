@@ -75,3 +75,62 @@ If use [material-icons](https://github.com/marella/material-icons), need import 
 
 - Node (>=16)
 - Package manager: `pnpm`
+
+### Component Create
+
+Create a react component from web component is simple used [@lit/react](https://lit.dev/docs/frameworks/react/)
+
+````tsx
+import { createComponent } from "@lit/react";
+import React from "react";
+import { Layout as _MduiLayout } from "mdui/components/layout.js";
+
+export { Layout as LayoutType } from "mdui/components/layout.js";
+
+export const Layout = createComponent({
+  react: React,
+  tagName: "mdui-layout",
+  elementClas
+```s: _MduiLayout,
+});
+````
+
+I offen export the raw type because I thought it can help to ref.
+
+```tsx
+import { LayoutType, Layout } from "@less/mdui-ract";
+
+export function App() {
+  const layoutRef = useRef<LayoutType>(null);
+  return <Layout ref={layoutRef}></Layout>;
+}
+```
+
+### Event
+
+If there are some special events in the component, can deil with this way:
+
+```tsx
+import { createComponent, type EventName } from "@lit/react";
+import { NavigationBar as _MduiNavigationBar } from "mdui/components/navigation-bar.js";
+import React from "react";
+
+export interface NavigationBarEvent extends Event {
+  target: _MduiNavigationBar & EventTarget;
+}
+
+export const NavigationBar = createComponent({
+  react: React,
+  tagName: "mdui-navigation-bar",
+  elementClass: _MduiNavigationBar,
+  events: {
+    onChange: "change" as EventName<NavigationBarEvent>,
+    onShow: "show" as EventName<NavigationBarEvent>,
+    onShown: "shown" as EventName<NavigationBarEvent>,
+    onHide: "hide" as EventName<NavigationBarEvent>,
+    onHidden: "hidden" as EventName<NavigationBarEvent>,
+  },
+});
+```
+
+Point the target type can help users to handle the event.
