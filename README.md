@@ -2,7 +2,7 @@
 
 [mdui](https://github.com/zdhxiong/mdui) for react.
 
-This package use [@lit/react](https://lit.dev/docs/frameworks/react/)([npm](https://www.npmjs.com/package/@lit/react)) convert the web components of [mdui](https://github.com/zdhxiong/mdui) to react component.
+This package use [@lit/react](https://lit.dev/docs/frameworks/react/)([npm](https://www.npmjs.com/package/@lit/react)) to convert the web components of [mdui](https://github.com/zdhxiong/mdui) to react component.
 
 ## Basic Usage
 
@@ -133,4 +133,4 @@ export const NavigationBar = createComponent({
 });
 ```
 
-Point the target type can help users to handle the event.
+Specified the target type can help users to handle the event.
