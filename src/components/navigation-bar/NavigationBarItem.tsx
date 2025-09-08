@@ -4,7 +4,7 @@ import React from "react";
 
 export { NavigationBarItem as NavigationBarItemType } from "mdui/components/navigation-bar-item.js";
 
-export interface NavigationBarItemEvent extends Event {
+export interface NavigationBarItemFocusEvent extends FocusEvent {
   target: _MduiNavigationBarItem & EventTarget;
 }
 
@@ -13,7 +13,7 @@ export const NavigationBarItem = createComponent({
   tagName: "mdui-navigation-bar-item",
   elementClass: _MduiNavigationBarItem,
   events: {
-    onFocus: "focus" as EventName<NavigationBarItemEvent>,
-    onBlur: "blur" as EventName<NavigationBarItemEvent>,
+    onFocus: "focus" as EventName<NavigationBarItemFocusEvent>,
+    onBlur: "blur" as EventName<NavigationBarItemFocusEvent>,
   },
 });
