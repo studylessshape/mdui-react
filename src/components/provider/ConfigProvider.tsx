@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import { Slot } from "../slot";
 import { $ } from "mdui/jq";
 import { getTheme as getMduiTheme } from "mdui/functions/getTheme";
@@ -70,11 +70,6 @@ export interface ConfigProviderProps {
    */
   customColor?: CustomColor[];
   /**
-   * Set if the theme affect all components
-   * @default true
-   */
-  page?: boolean | ThemePageOptions;
-  /**
    * @see https://www.mdui.org/docs/2/getting-started/localization
    */
   locale?: LocaleCode;
@@ -92,22 +87,26 @@ export interface ConfigProviderProps {
   getInstance?: (instance: ConfigProviderApi) => void;
 }
 
-function getThemePaging(
+function getPaging(
   key: "themePage" | "colorPage",
   page: boolean | ThemePageOptions | undefined
 ) {
   if (key == "themePage") {
-    return (
-      page == undefined ||
-      (page instanceof Boolean && page != false) ||
-      (page as ThemePageOptions).themePage != false
-    );
+    if (page == undefined) {
+      return true;
+    } else if (typeof page == "boolean") {
+      return page;
+    } else {
+      return page.themePage != false;
+    }
   } else if (key == "colorPage") {
-    return (
-      page == undefined ||
-      (page instanceof Boolean && page != false) ||
-      (page as ThemePageOptions).colorPage != false
-    );
+    if (page == undefined) {
+      return true;
+    } else if (typeof page == "boolean") {
+      return page;
+    } else {
+      return page.colorPage != false;
+    }
   }
   return true;
 }
@@ -129,34 +128,54 @@ export function useConfigProviderApi() {
 }
 
 /**
- * The provider for the Theme, Color and Locale of mdui
+ * The provider for the Theme, Color and Locale of mdui.
  */
 export function ConfigProvider(props: ConfigProviderProps) {
-  const themePage = getThemePaging("themePage", props.page);
-  const colorPage = getThemePaging("colorPage", props.page);
+  const prefix = "mdui-theme-";
+  const [page] = React.useState(
+    React.useContext(InstanceContext).instance == undefined
+  );
   const slotRef = React.useRef<HTMLDivElement>(null);
+  const documentJQ = $(document.documentElement);
 
-  function getSolt() {
-    return slotRef.current == null ? undefined : slotRef.current;
-  }
   function setTheme(theme: Theme) {
-    setMduiTheme(theme, themePage ? undefined : getSolt());
+    if (page) {
+      setMduiTheme(theme);
+    }
   }
-  function getTheme() {
-    return getMduiTheme(themePage ? undefined : getSolt());
+  function getTheme(): Theme {
+    if (page) {
+      return getMduiTheme();
+    }
+    const slot = $(slotRef.current);
+    if (slot.hasClass(prefix + "auto")) {
+      return "auto";
+    } else if (slot.hasClass(prefix + "dark")) {
+      return "dark";
+    }
+
+    return "light";
   }
   function resetTheme() {
-    const prefix = "mdui-theme-";
-    $(getSolt()).removeClass(prefix + getTheme());
+    if (page) {
+      documentJQ.removeClass(prefix + getTheme());
+    }
   }
   function setColorScheme(hex: string, customColors?: CustomColor[]) {
-    setMduiColorScheme(hex, {
-      target: colorPage ? undefined : getSolt(),
-      customColors: customColors,
-    });
+    const slot = $(slotRef.current);
+    if (page) {
+      setMduiColorScheme(hex, { customColors: customColors });
+    } else if (slotRef.current) {
+      setMduiColorScheme(hex, { target: slot, customColors: customColors });
+    }
   }
   function removeColorScheme() {
-    removeMduiColorScheme(colorPage ? undefined : getSolt());
+    const slot = $(slotRef.current);
+    if (page) {
+      removeMduiColorScheme();
+    } else {
+      removeMduiColorScheme(slot);
+    }
   }
   function getLocale() {
     return getMduiLocale();
@@ -222,7 +241,12 @@ export function ConfigProvider(props: ConfigProviderProps) {
 
   return (
     <InstanceContext.Provider value={{ instance: instance }}>
-      <Slot ref={slotRef}>{props.children}</Slot>
+      <Slot
+        ref={slotRef}
+        className={props.theme ? prefix + props.theme : undefined}
+      >
+        {props.children}
+      </Slot>
     </InstanceContext.Provider>
   );
 }

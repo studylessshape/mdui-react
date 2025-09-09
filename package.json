@@ -10,7 +10,10 @@
   },
   "license": "MIT",
   "version": "2.0.2",
-  "keywords": ["mdui", "react"],
+  "keywords": [
+    "mdui",
+    "react"
+  ],
   "module": "./dist/index.mjs",
   "scripts": {
     "build": "unbuild",
