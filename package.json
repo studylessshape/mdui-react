@@ -9,7 +9,8 @@
     "url": "git+https://github.com/studylessshape/mdui-react.git"
   },
   "license": "MIT",
-  "version": "2.0.1",
+  "version": "2.0.2",
+  "keywords": ["mdui", "react"],
   "module": "./dist/index.mjs",
   "scripts": {
     "build": "unbuild",
