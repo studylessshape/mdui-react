@@ -1,3 +1,4 @@
+//#region mdui components
 export * from "./components/avatar";
 export * from "./components/badge";
 export * from "./components/bottom-app-bar";
@@ -25,10 +26,15 @@ export * from "./components/range-slider";
 export * from "./components/segmented-button";
 export * from "./components/select";
 export * from "./components/slider";
-export * from "./components/slot";
 export * from "./components/snackbar";
 export * from "./components/switch";
 export * from "./components/tabs";
 export * from "./components/text-field";
 export * from "./components/tooltip";
 export * from "./components/top-app-bar";
+//#endregion
+
+//#region custom components
+export * from "./components/slot";
+export * from "./components/provider";
+//#endregion
