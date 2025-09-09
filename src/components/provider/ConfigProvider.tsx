@@ -12,6 +12,8 @@ import type { CustomColor } from "mdui/internal/colorScheme";
 import type { Theme } from "mdui/internal/theme";
 import type { LocaleStatusEventDetail } from "mdui";
 
+export type { Theme } from "mdui/internal/theme";
+
 export interface ThemePageOptions {
   /**
    * Set if theme affect all components
