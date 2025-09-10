@@ -129,6 +129,10 @@ export function useConfigProviderApi() {
 
 /**
  * The provider for the Theme, Color and Locale of mdui.
+ *
+ * First `ConfigProvider` will control Theme, Color of all page. Then `ConfigProvider` in `ConfigProvider` will control the children nodes.
+ *
+ * But need notice the locale is global.
  */
 export function ConfigProvider(props: ConfigProviderProps) {
   const prefix = "mdui-theme-";
